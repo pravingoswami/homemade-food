@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const connection_url = process.env.DB_MONGODB_ATLAS_URL || 'mongodb://localhost:27017home-made-food'
+// const connection_url = process.env.DB_MONGODB_ATLAS_URL || 'mongodb://localhost:27017home-made-food'
+const connection_url = process.env.DB_MONGODB_ATLAS_URL
 
 const setupDB = () => {
     // mongoose.connect('mongodb://localhost:27017home-made-food', {useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true, useFindAndModify : false})
