@@ -1,7 +1,11 @@
 const express = require('express')
 
+const userController = require("../app/controllers/userController")
+
 const router = express.Router()
 
-router.get("/", (req, res) => res.json("Welcome to the homemade food"))
+router.get("/users/list", userController.listUsers)
+
+
 
 module.exports = router
