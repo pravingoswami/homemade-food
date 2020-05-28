@@ -10,8 +10,7 @@ const userSchema = new Schema({
 
     username : {
         type : String,
-        required : true,
-        unique : true
+        required : true    
     },
 
     email : {
@@ -69,6 +68,7 @@ const userSchema = new Schema({
         default : Date.now()
     }
 })
+
 
 const UserModel = mongoose.model("User", userSchema)
 
