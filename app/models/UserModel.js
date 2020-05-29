@@ -126,6 +126,20 @@ userSchema.methods.generateToken = function(ip){
         .catch(err => Promise.reject(err))
 }
 
+userSchema.statics.findByToken = function(token){
+    const UserModel = this
+    let tokenData 
+    try {
+        tokenData = jwt.verify(token , 'jwt@123')
+    } catch(err) {
+        return Promise.reject(err)
+    }
+    return UserModel.findOne({
+        '_id' : tokenData.id,
+        'tokens.token' : token
+    })
+}
+
 const UserModel = mongoose.model("User", userSchema)
 
 module.exports = UserModel
