@@ -9,6 +9,7 @@ module.exports.listUsers = (req, res) => {
 module.exports.register = (req, res) => {
     console.log(req.body)
     const user = new UserModel(req.body)
+    user.ips.register.push(req.id)
     user.save()
         .then(user => res.json(user))
         .catch(err => res.json(err))
@@ -40,6 +41,18 @@ module.exports.edit = (req, res) => {
 
 module.exports.logout = (req, res) => {
     UserModel.findByIdAndUpdate(req.user._id, {$pull : {tokens : {token : req.token}}})
+        .then(user => user ? res.json(user) : res.json({}))
+        .catch(err => res.json(err))
+}
+
+module.exports.userInfo = (req, res) => {
+    UserModel.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => res.json(err))
+}
+
+module.exports.removeUser = (req, res) => {
+    UserModel.findByIdAndDelete(req.params.id)
         .then(user => user ? res.json(user) : res.json({}))
         .catch(err => res.json(err))
 }
