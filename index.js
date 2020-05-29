@@ -9,7 +9,7 @@ const app = express()
 app.use(express.json())
 app.use('/', router)
 
-const port = 3036
+const port = process.env.PORT || 3036
 
 app.listen(port, () => {
     console.log('Listening on the port', port)
