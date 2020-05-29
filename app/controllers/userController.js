@@ -30,3 +30,16 @@ module.exports.login = (req, res) => {
 module.exports.info = (req, res) => {
     res.json(req.user)
 }
+
+module.exports.edit = (req, res) => {
+    const body = req.body
+    UserModel.findByIdAndUpdate(req.user._id, body, {new : true, runValidators : true})
+        .then(user => user ? res.json(user) : res.json({}))
+        .catch(err => res.json(err))
+}
+
+module.exports.logout = (req, res) => {
+    UserModel.findByIdAndUpdate(req.user._id, {$pull : {tokens : {token : req.token}}})
+        .then(user => user ? res.json(user) : res.json({}))
+        .catch(err => res.json(err))
+}
