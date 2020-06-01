@@ -9,11 +9,13 @@ const port = process.env.PORT || 3036
 setupDB()
 const app = express()
 app.use(express.json())
+app.get("/", (req,res) => {
+    res.json("welcome to our page")
+})
+
 app.use('/', router)
 
-app.get("/", (req,req) => {
-    resizeBy.json("welcome to our page")
-})
+
 
 app.listen(port, () => {
     console.log('Listening on the port', port)
