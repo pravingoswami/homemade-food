@@ -7,7 +7,7 @@ const { authorizeAdmin } = require("../app/middlewares/authorization")
 
 const router = express.Router()
 
-router.get("/home", (req, res) => {
+router.get("/", (req, res) => {
     res.json("Welcome to home page")
 })
 router.post("/users/register", userController.register)
